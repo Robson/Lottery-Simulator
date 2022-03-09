@@ -100,9 +100,9 @@ table {
 	border-spacing: 0;
 	border-collapse: separate;
 	background: white;
-	border: 0px solid #FAFAFA;
+	border: 0 solid #FAFAFA;
 	border-radius: 7px;
-	box-shadow: rgba(14, 31, 53, 0.2) 0px 2px 4px 0px;	
+	box-shadow: rgba(14, 31, 53, 0.2) 0 2px 4px 0;	
 }
 
 th, td {
@@ -118,7 +118,6 @@ th {
 
 td {
 	border-top: 1px solid #ccc;
-	/*border-left: 1px solid #eee;*/
 }
 
 td:first-child, th:first-child {

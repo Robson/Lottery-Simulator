@@ -121,4 +121,4 @@ function isUsed(a) {
 	return a;
 }
 
-isUsed(lotteries);
+isUsed(lotteries, takeRandomItemsFromArray, sequence);
