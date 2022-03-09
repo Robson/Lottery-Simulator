@@ -1,10 +1,10 @@
 /***** PAGE *****/
 
 html {
-	background: #fff;
-	color: #000;	
+	background: #eee;
+	color: #333;	
 	text-align: center;
-	padding: 75px 0;
+	padding: 75px 0 25px;
 }
 
 body {
@@ -25,6 +25,12 @@ h1 {
 	margin: 0;
 	font: normal 40px 'roboto slab', georgia, serif;
 	font-weight: 500;
+}
+
+/***** ABOUT *****/
+
+#about {
+	margin-bottom: 20px;
 }
 
 /***** LINKS *****/
@@ -82,31 +88,37 @@ hr {
 	border-top: 3px solid #333;
 	margin: 0 auto 20px;
 	max-width: 75%;
+	display: none;
 }
 
 /***** TABLES *****/
 
 table {
 	width: auto;
+	padding: 5px;
 	margin: 0 auto 20px;
 	border-spacing: 0;
 	border-collapse: separate;
+	background: white;
+	border: 0px solid #FAFAFA;
+	border-radius: 7px;
+	box-shadow: rgba(14, 31, 53, 0.2) 0px 2px 4px 0px;	
 }
 
 th, td {
 	text-align: right;
-	padding: 3px 10px;
+	padding: 5px 10px;
 	border: 0;	
 }
 
 th {
-	border-bottom: 2px solid #666;	
+	border-bottom: 2px solid #aaa;	
 	font-weight: bold;	
 }
 
 td {
-	border-top: 1px solid #888;
-	border-left: 1px solid #eee;
+	border-top: 1px solid #ccc;
+	/*border-left: 1px solid #eee;*/
 }
 
 td:first-child, th:first-child {
@@ -119,7 +131,7 @@ tr.first td {
 }
 
 td.value {
-	padding: 0 5px;
+	padding: 0 10px;
 	font-family: 'Roboto Mono', monospace;
 	font-size: 95%;
 }
