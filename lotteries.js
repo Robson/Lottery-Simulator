@@ -33,6 +33,8 @@ lotteryUkLotto = {
 	currency: '&#163;',
 	currencyOutput: '£',
 	ticketPrice: 2,
+	description: "Players buy tickets with their choice of six different numbers between 1 and 59. In the draw, six numbered balls are drawn without replacement from a set of 59 balls numbered from 1 to 59. A further Bonus Ball is also drawn, which only affects players who match five numbers.",
+	wikipedia: "https://en.wikipedia.org/wiki/National_Lottery_(United_Kingdom)#Lotto",
 	combinations: [
 		[ "2 balls",                     9,        2, 0 ],
 		[ "3 balls",                    95,       30, 0 ],
@@ -71,6 +73,8 @@ lotteryUkThunderball = {
 	currency: '&#163;',
 	currencyOutput: '£',
 	ticketPrice: 1,
+	description: "The Thunderball jackpot draw requires players to pick five main numbers from 1 to 39 and one 'Thunderball' number from 1 to 14 for an entry fee of £1 per line. Prizes are won by matching the Thunderball number or at least three main numbers alone. The more numbers matched, the bigger the prize won.",
+	wikipedia: "https://en.wikipedia.org/wiki/National_Lottery_(United_Kingdom)#Thunderball",
 	combinations: [
 		[ "Thunderball only",     28,      3, 0 ],
 		[ "1 + Thunderball",      34,      5, 0 ],

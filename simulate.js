@@ -104,6 +104,7 @@ function simulate() {
 	// reset
 	chosenLottery = lotteries[d3.select('#lotteryType').property('value')];
 	d3.select('#output').style('display', 'block');
+	d3.select('#rules').html('Learn about the <a href="' + chosenLottery.wikipedia + '">' + chosenLottery.title + ' at Wikipedia</a>.');
 	currentStats.title = chosenLottery.title;
 	currentStats.currency = chosenLottery.currency;
 	currentStats.ticketPrice = chosenLottery.ticketPrice;
