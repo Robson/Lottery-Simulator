@@ -13,7 +13,7 @@
  
 ## Demo
 
-Coming soon.
+![Demo](https://raw.githubusercontent.com/Robson/Lottery-Simulator/master/Demo.gif)
 
 ## Explanation
 
