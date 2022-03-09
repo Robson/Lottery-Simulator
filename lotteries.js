@@ -72,15 +72,15 @@ lotteryUkThunderball = {
 	currencyOutput: '£',
 	ticketPrice: 1,
 	combinations: [
-		[ "Thunderball only",      28,      3, 0 ],
-		[ "1 + Thunderball",       34,      5, 0 ],
-		[ "2 + Thunderball",      134,     10, 0 ],
-		[ "3 numbers",            110,     10, 0 ],
-		[ "3 + Thunderball",     1436,     20, 0 ],
-		[ "4 numbers",           3646,    100, 0 ],
-		[ "4 + Thunderball",    47414,    250, 0 ],
-		[ "5 numbers",         620045,   5000, 0 ],
-		[ "5 + Thunderball", 58060597, 500000, 0 ]
+		[ "Thunderball only",     28,      3, 0 ],
+		[ "1 + Thunderball",      34,      5, 0 ],
+		[ "2 + Thunderball",     134,     10, 0 ],
+		[ "3 numbers",           110,     10, 0 ],
+		[ "3 + Thunderball",    1436,     20, 0 ],
+		[ "4 numbers",          3646,    100, 0 ],
+		[ "4 + Thunderball",   47414,    250, 0 ],
+		[ "5 numbers",        620045,   5000, 0 ],
+		[ "5 + Thunderball", 8060597, 500000, 0 ]
 	],
 	playerNumbers: function() {
 		var regular = generateRandomUniqueNumbers(1, 39, 5);
