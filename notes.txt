@@ -1,0 +1,31 @@
+== UK National Lottery ==
+
+£2 per ticket
+Players pick six balls.
+Numbers range from 1 to 59.
+
+The machine generates six balls and one bonus ball.
+
+6 numbers         = 45,057,474   to 1 = £13m
+5 numbers + bonus =  7,509,578   to 1 = £1m
+5 numbers         =    144,414   to 1 = £1,750
+4 numbers         =      2,179   to 1 = £  140
+3 numbers         =         95   to 1 = £   30
+2 numbers         =          9.3 to 1 = £    2
+
+== UK Thunderball ==
+
+£1 per ticket
+Pick 5 numbers from 1 to 39
+Pick one Thunderball from 1 to 14
+
+Match				Prize		Odds of winning
+Thunderball only	£3			28 to 1
+1 + Thunderball		£5			34 to 1
+2 + Thunderball		£10			134 to 1
+3 numbers			£10			110 to 1
+3 + Thunderball		£20			1,436 to 1
+4 numbers			£100		3,646 to 1
+4 + Thunderball		£250		47,414 to 1
+5 numbers			£5,000		620,045 to 1
+5 + Thunderball		£500,000	8,060,597 to 1

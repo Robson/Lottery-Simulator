@@ -1,0 +1,166 @@
+/***** PAGE *****/
+
+html {
+	background: #fff;
+	color: #000;	
+	text-align: center;
+	padding: 75px 0;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: rubik, sans-serif;
+}
+
+p {
+	margin-top: 0;
+	padding: 0 5px;
+}
+
+/***** HEADING *****/
+
+h1 {
+	padding: 0 5px;
+	margin: 0;
+	font: normal 40px 'roboto slab', georgia, serif;
+	font-weight: 500;
+}
+
+/***** LINKS *****/
+
+a {
+	color: #E5007E;
+	text-decoration: none;
+}
+
+a:hover {
+	border-bottom: 1px dotted #E5007E;
+}
+
+/***** CONTROLS *****/
+
+select, input {
+	font-family: rubik, sans-serif;
+	max-width: 100%;	
+}
+
+select[direction="rtl"] {
+	text-align: right;
+}
+
+/********** BUTTONS **********/
+
+input[type="button"] {
+  background: #E5007E;
+  color: #fff;
+  padding: 5px 8px;
+  cursor: pointer;
+  border: 0;
+  border-bottom: 3px solid #F17EBD;
+  border-radius: 5px;
+  opacity: 0.666;
+  margin: 2px 1px 8px;
+}
+
+input[type="button"]:hover {
+  opacity: 1;
+}
+
+input[type="button"]:active {
+  margin: 4px 1px 6px;
+}
+
+#simulate {
+	font-size: 24px;
+}
+
+/***** SPLITTERS *****/
+
+hr {
+	border: 0;
+	border-top: 3px solid #333;
+	margin: 0 auto 20px;
+	max-width: 75%;
+}
+
+/***** TABLES *****/
+
+table {
+	width: auto;
+	margin: 0 auto 20px;
+	border-spacing: 0;
+	border-collapse: separate;
+}
+
+th, td {
+	text-align: right;
+	padding: 3px 10px;
+	border: 0;	
+}
+
+th {
+	border-bottom: 2px solid #666;	
+	font-weight: bold;	
+}
+
+td {
+	border-top: 1px solid #888;
+	border-left: 1px solid #eee;
+}
+
+td:first-child, th:first-child {
+	border-left: 0;
+}
+
+tr:first-child td,
+tr.first td {
+	border-top: 0;
+}
+
+td.value {
+	padding: 0 5px;
+	font-family: 'Roboto Mono', monospace;
+	font-size: 95%;
+}
+
+.left {
+	text-align: left;
+}
+
+.text {
+	white-space: pre;
+}
+
+/***** OUTPUT *****/
+
+#output {
+	display: none;
+}
+
+/***** FOOTER *****/
+
+#footer {
+	margin-top: 20px;
+	font-size: 80%;
+	opacity: 0.9;
+}
+
+#footer p {
+	margin: 0;
+}
+
+/***** HANDLE SCREEN SIZES *****/
+
+#screenSmall {
+	display: none;
+}
+
+@media (max-width: 650px) {
+	#screenLarge {
+		display: none;
+	}
+	#screenSmall {
+		display: block;
+	}
+}
