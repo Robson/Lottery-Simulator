@@ -49,7 +49,23 @@ To run this on your computer:
  
 ## File Descriptions
 
-Coming soon.
+### index.html
+
+This is the webpage with the simulator, the input form and the output tables.
+
+### lotteries.js
+
+This consists of the information for each lottery type and some helper functions that are shared across all of them.
+
+Each lottery type must be in the same format as the existing lotteries, which means it must have a title, currency, etc.
+
+### simulate.js
+
+This file is responsible for simulating the ticket results, showing the statistics and handling the copying of statistics to the clipboard.
+
+### style.css
+
+All formatting and layout information is contained in this file.
 
 ## Technologies
 
