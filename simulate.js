@@ -54,6 +54,7 @@ function showOverallStats() {
 }
 
 function simulateSet() {
+	console.time('simulating')
 	if (mode == 1) {
 		currentStats.ticketsPurchased += speed;
 		currentStats.moneySpent = currentStats.ticketsPurchased * chosenLottery.ticketPrice;
@@ -65,14 +66,6 @@ function simulateSet() {
 				chosenLottery.combinations[determineWinnings][3]++;
 				currentStats.moneyWon += chosenLottery.combinations[determineWinnings][2];
 			}
-			/**
-			if (determineWinnings > 3) {
-				console.log('---------------------');
-				console.log(player);
-				console.log(machine);
-				console.log(determineWinnings);
-			}
-			**/
 		}
 		showOverallStats();
 		if (amount == currentStats.ticketsPurchased) {
@@ -80,6 +73,7 @@ function simulateSet() {
 			d3.select('#simulate').attr('value', 'Simulate!');
 		}
 	}
+	console.timeEnd('simulating');
 }
 
 function simulate() {
@@ -123,3 +117,9 @@ function simulate() {
 	}
 	
 }
+
+function isUsed(a) {
+	return a;
+}
+
+isUsed(simulate);

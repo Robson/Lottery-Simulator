@@ -14,6 +14,20 @@ function takeRandomItemsFromArray(array, amount) {
 	return answers;
 }
 
+function generateRandomUniqueNumbers(start, end, amount) {
+	var answers = [];
+	var slots = Array(end - start + 1);
+	var index = 0;
+	for (var a = 0; a < amount; a++) {
+		do {
+			index = Math.floor(Math.random() * slots.length);
+		} while (slots[index]);
+		slots[index] = true;
+		answers.push(index + 1);
+	}
+	return answers;
+}
+
 lotteryUkLotto = {
 	title: 'UK Lotto',
 	currency: '&#163;',
@@ -27,24 +41,20 @@ lotteryUkLotto = {
 		[ "6 balls",              45057474, 13000000, 0 ]
 	],
 	playerNumbers: function() {
-		var chosen = takeRandomItemsFromArray(sequence(1, 59), 6);
-		return chosen;		
+		return generateRandomUniqueNumbers(1, 59, 6);
 	},
 	machineNumbers: function() {
 		// includes bonus ball
-		var chosen = takeRandomItemsFromArray(sequence(1, 59), 7);
-		return chosen;			
+		return generateRandomUniqueNumbers(1, 59, 7);
 	},
 	determineWinnings: function(player, machine) {
-		var machineBonus = machine[6];
-		machine = machine.slice(0, 6);
 		var matched = 0;
 		for (var a = 0; a < player.length; a++) {
-			if (machine.includes(player[a])) {
+			if (player.includes(machine[a])) {
 				matched++;
 			}
 		}
-		var isBonusChosen = player.includes(machineBonus);
+		var isBonusChosen = player.includes(machine[6]);
 		switch (matched) {
 			case 2: return 0;
 			case 3: return 1;
@@ -72,13 +82,13 @@ lotteryUkThunderball = {
 		[ "5 + Thunderball", 58060597, 500000, 0 ]
 	],
 	playerNumbers: function() {
-		var regular = takeRandomItemsFromArray(sequence(1, 39), 5);
-		var thunderball = takeRandomItemsFromArray(sequence(1, 14), 1);
+		var regular = generateRandomUniqueNumbers(1, 39, 5);
+		var thunderball = generateRandomUniqueNumbers(1, 14, 1);
 		return [regular, thunderball];
 	},
 	machineNumbers: function() {
-		var regular = takeRandomItemsFromArray(sequence(1, 39), 5);
-		var thunderball = takeRandomItemsFromArray(sequence(1, 14), 1);
+		var regular = generateRandomUniqueNumbers(1, 39, 5);
+		var thunderball = generateRandomUniqueNumbers(1, 14, 1);
 		return [regular, thunderball];		
 	},
 	determineWinnings: function(player, machine) {
@@ -105,3 +115,9 @@ var lotteries = [
 	lotteryUkLotto,
 	lotteryUkThunderball
 ]
+
+function isUsed(a) {
+	return a;
+}
+
+isUsed(lotteries);
