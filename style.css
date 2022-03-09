@@ -48,7 +48,7 @@ a:hover {
 
 select, input {
 	font-family: rubik, sans-serif;
-	max-width: 100%;	
+	max-width: 100%;
 }
 
 select[direction="rtl"] {

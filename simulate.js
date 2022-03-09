@@ -1,7 +1,12 @@
 var currentStats = {
+	title: '',
+	currency: '',
 	ticketsPurchased: 0,
+	ticketPrice: 0,
 	moneySpent: 0,
-	moneyWon: 0	
+	moneyWon: 0,
+	bestResultIndex: -1,
+	bestResultTitle: ''
 }
 
 var mode = 0; // 0=ready, 1=simulating
@@ -63,6 +68,10 @@ function simulateSet() {
 			var machine = chosenLottery.machineNumbers();
 			var determineWinnings = chosenLottery.determineWinnings(player, machine);
 			if (determineWinnings > -1) {
+				if (currentStats.bestResultIndex < determineWinnings) {
+					currentStats.bestResultIndex = determineWinnings;
+					currentStats.bestResultTitle = chosenLottery.combinations[determineWinnings][0];
+				}
 				chosenLottery.combinations[determineWinnings][3]++;
 				currentStats.moneyWon += chosenLottery.combinations[determineWinnings][2];
 			}
@@ -95,9 +104,14 @@ function simulate() {
 	// reset
 	chosenLottery = lotteries[d3.select('#lotteryType').property('value')];
 	d3.select('#output').style('display', 'block');
+	currentStats.title = chosenLottery.title;
+	currentStats.currency = chosenLottery.currency;
+	currentStats.ticketPrice = chosenLottery.ticketPrice;
 	currentStats.ticketsPurchased = 0;
 	currentStats.moneySpent = 0;
 	currentStats.moneyWon = 0;
+	currentStats.bestResultIndex = -1;
+	currentStats.bestResultTitle = 'None';
 	for (var a = 0; a < chosenLottery.combinations.length; a++) {
 		chosenLottery.combinations[a][3] = 0;
 	}
@@ -118,8 +132,28 @@ function simulate() {
 	
 }
 
+function copy() {
+	var output = '';
+	output += 'Lottery Simulation Results #lsr\r\n';
+	output += 'https://robson.plus/lottery-simulator\r\n\r\n';
+	output += 'Type: ' + currentStats.title + '\r\n';
+	output += 'Tickets: ' + Number(currentStats.ticketsPurchased).toLocaleString() + '\r\n';
+	output += 'Ticket Price: ' + chosenLottery.currencyOutput + Number(currentStats.ticketPrice).toLocaleString() + '\r\n';
+	output += 'Spent: ' + chosenLottery.currencyOutput + Number(currentStats.moneySpent).toLocaleString() + '\r\n';
+	output += 'Won: ' + chosenLottery.currencyOutput + Number(currentStats.moneyWon).toLocaleString() + '\r\n';
+	output += 'Balance: ';
+	if (currentStats.moneyWon - currentStats.moneySpent < 0) {
+		output += '-';
+	}
+	output += chosenLottery.currencyOutput + Number(Math.abs(currentStats.moneyWon - currentStats.moneySpent)).toLocaleString() + '\r\n';
+	output += 'Best Result: ' + currentStats.bestResultTitle;
+	
+	navigator.clipboard.writeText(output);
+	alert('Stats copied to the clipboard!');
+}
+
 function isUsed(a) {
 	return a;
 }
 
-isUsed(simulate);
+isUsed(simulate, copy);

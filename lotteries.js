@@ -31,6 +31,7 @@ function generateRandomUniqueNumbers(start, end, amount) {
 lotteryUkLotto = {
 	title: 'UK Lotto',
 	currency: '&#163;',
+	currencyOutput: '£',
 	ticketPrice: 2,
 	combinations: [
 		[ "2 balls",                     9,        2, 0 ],
@@ -68,6 +69,7 @@ lotteryUkLotto = {
 lotteryUkThunderball = {
 	title: 'UK Thunderball',
 	currency: '&#163;',
+	currencyOutput: '£',
 	ticketPrice: 1,
 	combinations: [
 		[ "Thunderball only",      28,      3, 0 ],
