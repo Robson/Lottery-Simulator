@@ -54,12 +54,11 @@ lotteryUkLotto = {
 				matched++;
 			}
 		}
-		var isBonusChosen = player.includes(machine[6]);
 		switch (matched) {
 			case 2: return 0;
 			case 3: return 1;
 			case 4: return 2;
-			case 5: return (isBonusChosen ? 4 : 3);
+			case 5: return (player.includes(machine[6]) ? 4 : 3);
 			case 6: return 5;
 			default: return -1;
 		}
