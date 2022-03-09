@@ -1,4 +1,4 @@
-# Lottery-Simulator
+# Lottery Simulator
 
 ## Table of Contents
 
