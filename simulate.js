@@ -137,7 +137,7 @@ function simulate() {
 
 function copy() {
 	var output = '';
-	output += 'Lottery Simulation Results #lsr\r\n';
+	output += 'Lottery Simulator Results #lsr\r\n';
 	output += 'https://robson.plus/lottery-simulator\r\n\r\n';
 	output += 'Type: ' + currentStats.title + '\r\n';
 	output += 'Tickets: ' + Number(currentStats.ticketsPurchased).toLocaleString() + '\r\n';
