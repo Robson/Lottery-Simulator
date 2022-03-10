@@ -27,13 +27,6 @@ h1 {
 	font-weight: 500;
 }
 
-/***** ABOUT *****/
-
-#about {
-	margin: 15px 0 0;
-	padding: 0;
-}
-
 /***** LINKS *****/
 
 a {
@@ -144,13 +137,6 @@ td.value {
 	white-space: pre;
 }
 
-/***** RULES *****/
-
-#rules {
-	margin: 0 auto;
-	width: 400px;
-}
-
 /***** OUTPUT *****/
 
 #output {
@@ -160,7 +146,7 @@ td.value {
 /***** FOOTER *****/
 
 #footer {
-	margin-top: 0;
+	margin: 15px 20px;
 }
 
 #footer p {
