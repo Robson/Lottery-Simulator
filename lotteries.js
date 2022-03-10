@@ -36,12 +36,12 @@ lotteryUkLotto = {
 	description: "Players buy tickets with their choice of six different numbers between 1 and 59. In the draw, six numbered balls are drawn without replacement from a set of 59 balls numbered from 1 to 59. A further Bonus Ball is also drawn, which only affects players who match five numbers.",
 	wikipedia: "https://en.wikipedia.org/wiki/National_Lottery_(United_Kingdom)#Lotto",
 	combinations: [
-		[ "2 balls",                     9,        2, 0 ],
-		[ "3 balls",                    95,       30, 0 ],
-		[ "4 balls",                  2179,      140, 0 ],
-		[ "5 balls",                144414,     1750, 0 ],
-		[ "5 balls + bonus ball",  7509578,  1000000, 0 ],
-		[ "6 balls",              45057474, 13000000, 0 ]
+		[ "2 balls",                     9,       2, 0 ],
+		[ "3 balls",                    95,      30, 0 ],
+		[ "4 balls",                  2179,     140, 0 ],
+		[ "5 balls",                144414,    1750, 0 ],
+		[ "5 balls + bonus ball",  7509578, 1000000, 0 ],
+		[ "6 balls",              45057474, 6700000, 0 ]
 	],
 	playerNumbers: function() {
 		return generateRandomUniqueNumbers(1, 59, 6);
