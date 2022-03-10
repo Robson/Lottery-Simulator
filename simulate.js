@@ -6,7 +6,8 @@ var currentStats = {
 	moneySpent: 0,
 	moneyWon: 0,
 	bestResultIndex: -1,
-	bestResultTitle: ''
+	bestResultTitle: '',
+	bestResultAmount: 0
 }
 
 var mode = 0; // 0=ready, 1=simulating
@@ -68,12 +69,13 @@ function simulateSet() {
 			var machine = chosenLottery.machineNumbers();
 			var determineWinnings = chosenLottery.determineWinnings(player, machine);
 			if (determineWinnings > -1) {
-				if (currentStats.bestResultIndex < determineWinnings) {
-					currentStats.bestResultIndex = determineWinnings;
-					currentStats.bestResultTitle = chosenLottery.combinations[determineWinnings][0];
-				}
 				chosenLottery.combinations[determineWinnings][3]++;
 				currentStats.moneyWon += chosenLottery.combinations[determineWinnings][2];
+				if (currentStats.bestResultIndex <= determineWinnings) {
+					currentStats.bestResultIndex = determineWinnings;
+					currentStats.bestResultTitle = chosenLottery.combinations[determineWinnings][0];
+					currentStats.bestResultAmount = chosenLottery.combinations[determineWinnings][3];
+				}				
 			}
 		}
 		showOverallStats();
@@ -147,7 +149,7 @@ function copy() {
 		output += '-';
 	}
 	output += chosenLottery.currencyOutput + Number(Math.abs(currentStats.moneyWon - currentStats.moneySpent)).toLocaleString() + '\r\n';
-	output += 'Best Result: ' + currentStats.bestResultTitle;
+	output += 'Best Result: ' + currentStats.bestResultTitle + ' (x' + Number(currentStats.bestResultAmount).toLocaleString() + ')';
 	
 	navigator.clipboard.writeText(output);
 	alert('Stats copied to the clipboard!');
