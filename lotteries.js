@@ -165,8 +165,8 @@ lotteryUkSetForLife = {
 
 var lotteries = [
 	lotteryUkLotto,
-	lotteryUkThunderball,
-	lotteryUkSetForLife
+	lotteryUkSetForLife,
+	lotteryUkThunderball
 ]
 
 function isUsed(a) {
