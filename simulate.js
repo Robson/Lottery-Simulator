@@ -22,7 +22,11 @@ function showOverallStats() {
 		d3.select('#statSimulationProgress').html(Math.round((currentStats.ticketsPurchased / amount) * 100, 0) + '%');
 	}
 	d3.select('#statTicketsPurchased').html(Number(currentStats.ticketsPurchased).toLocaleString());
-	d3.select('#statTicketPrice').html(chosenLottery.currency + Number(chosenLottery.ticketPrice).toLocaleString());
+	if (chosenLottery.ticketPrice % 1 == 0) {
+		d3.select('#statTicketPrice').html(chosenLottery.currency + Number(chosenLottery.ticketPrice).toLocaleString());
+	} else {
+		d3.select('#statTicketPrice').html(chosenLottery.currency + Number(chosenLottery.ticketPrice).toLocaleString(undefined, { minimumFractionDigits: 2 }));		
+	}
 	d3.select('#statMoneySpent').html(chosenLottery.currency + Number(currentStats.moneySpent).toLocaleString());
 	d3.select('#statMoneyWon').html(chosenLottery.currency + Number(currentStats.moneyWon).toLocaleString());
 	if (currentStats.moneyWon - currentStats.moneySpent < 0) {
@@ -105,6 +109,12 @@ function simulate() {
 	
 	// reset
 	chosenLottery = lotteries[d3.select('#lotteryType').property('value')];
+	if (chosenLottery.description == '') {
+		d3.select('#tableNotes').style('display', 'none');
+	} else {
+		d3.select('#tableNotes').style('display', 'block');
+		d3.select('#noteText').html(chosenLottery.description);
+	}	
 	d3.select('#output').style('display', 'block');
 	d3.select('#rules').html('Learn about the <a href="' + chosenLottery.wikipedia + '">' + chosenLottery.title + ' at Wikipedia</a>.');
 	currentStats.title = chosenLottery.title;

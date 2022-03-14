@@ -137,6 +137,15 @@ td.value {
 	white-space: pre;
 }
 
+#tableNotes {
+	max-width: 400px;
+	margin: 0 auto 20px;
+}
+
+#tableNotes * {
+	text-align: center !important;
+}
+
 /***** OUTPUT *****/
 
 #output {

@@ -33,7 +33,7 @@ lotteryUkLotto = {
 	currency: '&#163;',
 	currencyOutput: '£',
 	ticketPrice: 2,
-	description: "Players buy tickets with their choice of six different numbers between 1 and 59. In the draw, six numbered balls are drawn without replacement from a set of 59 balls numbered from 1 to 59. A further Bonus Ball is also drawn, which only affects players who match five numbers.",
+	description: '',
 	wikipedia: "https://en.wikipedia.org/wiki/National_Lottery_(United_Kingdom)#Lotto",
 	combinations: [
 		[ "2 balls",                     9,       2, 0 ],
@@ -73,7 +73,7 @@ lotteryUkThunderball = {
 	currency: '&#163;',
 	currencyOutput: '£',
 	ticketPrice: 1,
-	description: "The Thunderball jackpot draw requires players to pick five main numbers from 1 to 39 and one 'Thunderball' number from 1 to 14 for an entry fee of £1 per line. Prizes are won by matching the Thunderball number or at least three main numbers alone. The more numbers matched, the bigger the prize won.",
+	description: '',	
 	wikipedia: "https://en.wikipedia.org/wiki/National_Lottery_(United_Kingdom)#Thunderball",
 	combinations: [
 		[ "Thunderball only",     28,      3, 0 ],
@@ -116,9 +116,57 @@ lotteryUkThunderball = {
 	}	
 }
 
+lotteryUkSetForLife = {
+	title: 'UK Set For Life',
+	currency: '&#163;',
+	currencyOutput: '£',
+	ticketPrice: 1.5,
+	description: "The prize for <em>5 numbers</em> is £10K every month for a year (total: £120K).<br/>The prize for <em>5 numbers + Life Ball</em> is £10K every month for 30 years (total: £3.6M).",
+	wikipedia: "https://en.wikipedia.org/wiki/National_Lottery_(United_Kingdom)#Set_For_Life",
+	combinations: [
+		[ "2 numbers",           14,           5, 0 ],
+		[ "2 + Life Ball",      133,          10, 0 ],
+		[ "3 numbers",          197,          20, 0 ],
+		[ "3 + Life Ball",     1781,          30, 0 ],
+		[ "4 numbers",         8115,          50, 0 ],
+		[ "4 + Life Ball",    73044,         250, 0 ],	
+		[ "5 numbers",      1704376,    12*10000, 0 ],
+		[ "5 + Life Ball", 15339389, 30*12*10000, 0 ],		
+	],
+	playerNumbers: function() {
+		var regular = generateRandomUniqueNumbers(1, 47, 5);
+		var lifeball = generateRandomUniqueNumbers(1, 10, 1);
+		return [regular, lifeball];
+	},
+	machineNumbers: function() {
+		var regular = generateRandomUniqueNumbers(1, 47, 5);
+		var lifeball = generateRandomUniqueNumbers(1, 10, 1);
+		return [regular, lifeball];
+	},
+	determineWinnings: function(player, machine) {
+		var matched = 0;
+		for (var a = 0; a < player[0].length; a++) {
+			if (machine[0].includes(player[0][a])) {
+				matched++;
+			}
+		}
+		var isLifeBallChosen = (player[1][0] == machine[1][0]);
+		switch (matched) {
+			case 0: return -1;
+			case 1: return -1;
+			case 2: return (isLifeBallChosen ? 1 : 0);
+			case 3: return (isLifeBallChosen ? 3 : 2);
+			case 4: return (isLifeBallChosen ? 5 : 4);
+			case 5: return (isLifeBallChosen ? 7 : 6);
+			default: return -1;
+		}		
+	}	
+}
+
 var lotteries = [
 	lotteryUkLotto,
-	lotteryUkThunderball
+	lotteryUkThunderball,
+	lotteryUkSetForLife
 ]
 
 function isUsed(a) {
