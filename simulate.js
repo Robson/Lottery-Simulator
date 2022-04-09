@@ -150,8 +150,15 @@ function copy() {
 	output += 'Lottery Simulator Results #lsr\r\n';
 	output += 'https://robson.plus/lottery-simulator\r\n\r\n';
 	output += 'Type: ' + currentStats.title + '\r\n';
-	output += 'Tickets: ' + Number(currentStats.ticketsPurchased).toLocaleString() + '\r\n';
-	output += 'Ticket Price: ' + chosenLottery.currencyOutput + Number(currentStats.ticketPrice).toLocaleString() + '\r\n';
+	output += 'Tickets: ' + Number(currentStats.ticketsPurchased).toLocaleString() + ' (' + chosenLottery.currencyOutput;
+
+	if (chosenLottery.ticketPrice % 1 == 0) {
+		output += Number(chosenLottery.ticketPrice).toLocaleString();
+	} else {
+		output += Number(chosenLottery.ticketPrice).toLocaleString(undefined, { minimumFractionDigits: 2 });		
+	}
+	
+	output += ' each)\r\n';	
 	output += 'Spent: ' + chosenLottery.currencyOutput + Number(currentStats.moneySpent).toLocaleString() + '\r\n';
 	output += 'Won: ' + chosenLottery.currencyOutput + Number(currentStats.moneyWon).toLocaleString() + '\r\n';
 	output += 'Balance: ';
