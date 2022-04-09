@@ -116,7 +116,7 @@ function simulate() {
 		d3.select('#noteText').html(chosenLottery.description);
 	}	
 	d3.select('#output').style('display', 'block');
-	d3.select('#rules').html('Learn about the <a href="' + chosenLottery.wikipedia + '">' + chosenLottery.title + ' at Wikipedia</a>.');
+	d3.select('#rules').html('Learn about the <a href="' + chosenLottery.wikipedia + '">' + chosenLottery.title.split('(')[0].trim() + ' at Wikipedia</a>.');
 	currentStats.title = chosenLottery.title;
 	currentStats.currency = chosenLottery.currency;
 	currentStats.ticketPrice = chosenLottery.ticketPrice;

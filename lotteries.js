@@ -163,11 +163,81 @@ lotteryUkSetForLife = {
 	}	
 }
 
+lotteryUkLottoHotPicks = {
+	amount: -1,
+	title: 'UK Lotto Hotpicks',
+	currency: '&#163;',
+	currencyOutput: '£',
+	ticketPrice: 1,
+	description: '',
+	wikipedia: "https://en.wikipedia.org/wiki/National_Lottery_(United_Kingdom)#Lotto_Hotpicks",
+	combinations: [],
+	playerNumbers: function() {
+		return generateRandomUniqueNumbers(1, 59, this.amount);
+	},
+	machineNumbers: function() {
+		// includes bonus ball
+		return generateRandomUniqueNumbers(1, 59, 6);
+	},
+	determineWinnings: function(player, machine) {
+		var matched = 0;
+		for (var a = 0; a < player.length; a++) {
+			if (machine.includes(player[a])) {
+				matched++;
+			}
+		}
+		if (matched >= this.amount) {
+			return 0;
+		} else {
+			return -1;
+		}
+	},
+	amountOfPicks: function(chosenAmount) {
+		this.amount = chosenAmount;
+		this.title = 'UK Lotto Hotpicks (Pick ' + this.amount + ')';
+		winStats = [this.amount + ' Ball' + (this.amount > 1 ? 's' : ''), 0, 0, 0];
+		switch (this.amount) {
+			case 1:
+				winStats[1] = 9;
+				winStats[2] = 6;
+				break;
+			case 2:
+				winStats[1] = 114;
+				winStats[2] = 60;
+				break;
+			case 3:
+				winStats[1] = 1625;
+				winStats[2] = 800;
+				break;
+			case 4:
+				winStats[1] = 30341;
+				winStats[2] = 13000;
+				break;
+			case 5:
+				winStats[1] = 834397;
+				winStats[2] = 350000;
+				break;				
+		}
+		this.combinations.push(winStats);
+	}
+}
+
 var lotteries = [
 	lotteryUkLotto,
 	lotteryUkSetForLife,
 	lotteryUkThunderball
 ]
+
+for (var i = 1; i <= 5; i++) {
+	// plese add deep cloning to JavaScript :(
+	var lottery = JSON.parse(JSON.stringify(lotteryUkLottoHotPicks));	
+	lottery.playerNumbers = lotteryUkLottoHotPicks.playerNumbers;
+	lottery.machineNumbers = lotteryUkLottoHotPicks.machineNumbers;
+	lottery.determineWinnings = lotteryUkLottoHotPicks.determineWinnings;
+	lottery.amountOfPicks = lotteryUkLottoHotPicks.amountOfPicks;
+	lottery.amountOfPicks(i);
+	lotteries.push(lottery);
+}
 
 function isUsed(a) {
 	return a;
