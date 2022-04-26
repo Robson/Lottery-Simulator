@@ -14,6 +14,17 @@ var mode = 0; // 0=ready, 1=simulating
 var amount = 0, speed = 0;
 var timeoutIds = [];
 
+function formatNumber(number) {
+	number = +number.toFixed(2);
+	if (chosenLottery.forcePrecision != null) {
+		return Number(number).toLocaleString(undefined, { minimumFractionDigits: chosenLottery.forcePrecision });
+	} else if (number % 1 == 0) {
+		return Number(number).toLocaleString();
+	} else {
+		return Number(number).toLocaleString(undefined, { minimumFractionDigits: 2 });
+	}	
+}
+
 function showOverallStats() {
 	// reset everything
 	if (currentStats.ticketsPurchased == 0) {
@@ -22,18 +33,15 @@ function showOverallStats() {
 		d3.select('#statSimulationProgress').html(Math.round((currentStats.ticketsPurchased / amount) * 100, 0) + '%');
 	}
 	d3.select('#statTicketsPurchased').html(Number(currentStats.ticketsPurchased).toLocaleString());
-	if (chosenLottery.ticketPrice % 1 == 0) {
-		d3.select('#statTicketPrice').html(chosenLottery.currency + Number(chosenLottery.ticketPrice).toLocaleString());
-	} else {
-		d3.select('#statTicketPrice').html(chosenLottery.currency + Number(chosenLottery.ticketPrice).toLocaleString(undefined, { minimumFractionDigits: 2 }));		
-	}
-	d3.select('#statMoneySpent').html(chosenLottery.currency + Number(currentStats.moneySpent).toLocaleString());
-	d3.select('#statMoneyWon').html(chosenLottery.currency + Number(currentStats.moneyWon).toLocaleString());
+	d3.select('#statTicketPrice').html(chosenLottery.currency + formatNumber(chosenLottery.ticketPrice));
+	d3.select('#statMoneySpent').html(chosenLottery.currency + formatNumber(currentStats.moneySpent));
+	d3.select('#statMoneyWon').html(chosenLottery.currency + formatNumber(currentStats.moneyWon));
+	var prefix = '';
 	if (currentStats.moneyWon - currentStats.moneySpent < 0) {
-		d3.select('#statMoneyBalance').html('-' + chosenLottery.currency + Number(-(currentStats.moneyWon - currentStats.moneySpent)).toLocaleString());
-	} else {
-		d3.select('#statMoneyBalance').html(chosenLottery.currency + Number(currentStats.moneyWon - currentStats.moneySpent).toLocaleString());
+		prefix = '-';
 	}
+	var balance = Math.abs(currentStats.moneyWon - currentStats.moneySpent);
+	d3.select('#statMoneyBalance').html(prefix + chosenLottery.currency + formatNumber(balance));
 			
 	d3.selectAll('#tableWinsLarge tr.data').remove();
 	d3.selectAll('#tableWinsSmall tr.data').remove();
@@ -43,7 +51,7 @@ function showOverallStats() {
 		var row = d3.select('#tableWinsLarge').append('tr').attr('class', 'data ' + (a == 0 ? 'first' : ''));
 		row.append('td').attr('class', 'text left').html(combo[0]);
 		row.append('td').attr('class', 'value').html(Number(combo[1]).toLocaleString());
-		row.append('td').attr('class', 'value').html(chosenLottery.currency + Number(combo[2]).toLocaleString());
+		row.append('td').attr('class', 'value').html(chosenLottery.currency + formatNumber(combo[2]));
 		row.append('td').attr('class', 'value').html(Number(combo[3]).toLocaleString());
 		
 		combo = chosenLottery.combinations[a];
@@ -52,7 +60,7 @@ function showOverallStats() {
 		if (combo[2] >= 1000000) {
 			row.append('td').attr('class', 'value').html(chosenLottery.currency + Number(combo[2] / 1000000).toLocaleString() + 'm');
 		} else {
-			row.append('td').attr('class', 'value').html(chosenLottery.currency + Number(combo[2]).toLocaleString());
+			row.append('td').attr('class', 'value').html(chosenLottery.currency + formatNumber(combo[2]));
 		}
 		row.append('td').attr('class', 'value').html(Number(combo[3]).toLocaleString());
 		
@@ -151,21 +159,15 @@ function copy() {
 	output += 'https://robson.plus/lottery-simulator\r\n\r\n';
 	output += 'Type: ' + currentStats.title + '\r\n';
 	output += 'Tickets: ' + Number(currentStats.ticketsPurchased).toLocaleString() + ' (' + chosenLottery.currencyOutput;
-
-	if (chosenLottery.ticketPrice % 1 == 0) {
-		output += Number(chosenLottery.ticketPrice).toLocaleString();
-	} else {
-		output += Number(chosenLottery.ticketPrice).toLocaleString(undefined, { minimumFractionDigits: 2 });		
-	}
-	
+	output += formatNumber(chosenLottery.ticketPrice);
 	output += ' each)\r\n';	
-	output += 'Spent: ' + chosenLottery.currencyOutput + Number(currentStats.moneySpent).toLocaleString() + '\r\n';
-	output += 'Won: ' + chosenLottery.currencyOutput + Number(currentStats.moneyWon).toLocaleString() + '\r\n';
+	output += 'Spent: ' + chosenLottery.currencyOutput + formatNumber(currentStats.moneySpent) + '\r\n';
+	output += 'Won: ' + chosenLottery.currencyOutput + formatNumber(currentStats.moneyWon) + '\r\n';
 	output += 'Balance: ';
 	if (currentStats.moneyWon - currentStats.moneySpent < 0) {
 		output += '-';
 	}
-	output += chosenLottery.currencyOutput + Number(Math.abs(currentStats.moneyWon - currentStats.moneySpent)).toLocaleString() + '\r\n';
+	output += chosenLottery.currencyOutput + formatNumber(Math.abs(currentStats.moneyWon - currentStats.moneySpent)) + '\r\n';
 	output += 'Best Result: ' + currentStats.bestResultTitle + ' (x' + Number(currentStats.bestResultAmount).toLocaleString() + ')';
 	
 	navigator.clipboard.writeText(output);

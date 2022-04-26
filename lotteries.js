@@ -35,6 +35,7 @@ lotteryUkLotto = {
 	ticketPrice: 2,
 	description: '',
 	wikipedia: "https://en.wikipedia.org/wiki/National_Lottery_(United_Kingdom)#Lotto",
+	forcePrecision: null,
 	combinations: [
 		[ "2 balls",                     9,       2, 0 ],
 		[ "3 balls",                    95,      30, 0 ],
@@ -75,6 +76,7 @@ lotteryUkThunderball = {
 	ticketPrice: 1,
 	description: '',	
 	wikipedia: "https://en.wikipedia.org/wiki/National_Lottery_(United_Kingdom)#Thunderball",
+	forcePrecision: null,
 	combinations: [
 		[ "Thunderball only",     28,      3, 0 ],
 		[ "1 + Thunderball",      34,      5, 0 ],
@@ -123,6 +125,7 @@ lotteryUkSetForLife = {
 	ticketPrice: 1.5,
 	description: "The prize for <em>5 numbers</em> is £10K every month for a year (total: £120K).<br/>The prize for <em>5 numbers + Life Ball</em> is £10K every month for 30 years (total: £3.6M).",
 	wikipedia: "https://en.wikipedia.org/wiki/National_Lottery_(United_Kingdom)#Set_For_Life",
+	forcePrecision: null,
 	combinations: [
 		[ "2 numbers",           14,           5, 0 ],
 		[ "2 + Life Ball",      133,          10, 0 ],
@@ -171,6 +174,7 @@ lotteryUkLottoHotPicks = {
 	ticketPrice: 1,
 	description: '',
 	wikipedia: "https://en.wikipedia.org/wiki/National_Lottery_(United_Kingdom)#Lotto_Hotpicks",
+	forcePrecision: null,
 	combinations: [],
 	playerNumbers: function() {
 		return generateRandomUniqueNumbers(1, 59, this.amount);
@@ -222,10 +226,63 @@ lotteryUkLottoHotPicks = {
 	}
 }
 
+lotteryUkEuroMillions = {
+	title: 'UK EuroMillions',
+	currency: '&#163;',
+	currencyOutput: '£',
+	ticketPrice: 2.5,
+	description: '',
+	wikipedia: "https://en.wikipedia.org/wiki/EuroMillions",
+	forcePrecision: 2,
+	combinations: [
+		[ "2 Main + 0 Bonus",        21,        2.50 ],  
+		[ "2 Main + 1 Bonus",        48,        3.60 ],
+		[ "1 Main + 2 Bonus",       187,        4.30 ],
+		[ "3 Main + 0 Bonus",       313,        6.00 ],
+		[ "3 Main + 1 Bonus",       705,        7.30 ],
+		[ "2 Main + 2 Bonus",       984,        9.10 ],
+		[ "4 Main + 0 Bonus",     13810,       25.60 ],
+		[ "3 Main + 2 Bonus",     14124,       37.30 ],
+		[ "4 Main + 1 Bonus",     31074,       77.80 ],
+		[ "4 Main + 2 Bonus",    621502,      844.70 ],
+		[ "5 Main + 0 Bonus",   3107514,    13561.20 ],
+		[ "5 Main + 1 Bonus",   6991907,   130554.30 ],
+		[ "5 Main + 2 Bonus", 139838159, 17000000.00 ]
+	],
+	playerNumbers: function() {
+		var regular = generateRandomUniqueNumbers(1, 50, 5);
+		var bonus = generateRandomUniqueNumbers(1, 12, 2);
+		return [regular, bonus];
+	},
+	machineNumbers: function() {
+		var regular = generateRandomUniqueNumbers(1, 50, 5);
+		var bonus = generateRandomUniqueNumbers(1, 12, 2);
+		return [regular, bonus];		
+	},
+	determineWinnings: function(player, machine) {
+		var matchedRegular = 0;
+		for (var a = 0; a < player[0].length; a++) {
+			if (machine[0].includes(player[0][a])) {
+				matchedRegular++;
+			}
+		}
+		var matchedBonus = 0;
+		for (var a = 0; a < player[1].length; a++) {
+			if (machine[1].includes(player[1][a])) {
+				matchedBonus++;
+			}
+		}
+		
+		var combo = matchedRegular + " Main + " + matchedBonus + " Bonus";
+		return this.combinations.findIndex(a => a[0] == combo);
+	}	
+}
+
 var lotteries = [
 	lotteryUkLotto,
 	lotteryUkSetForLife,
-	lotteryUkThunderball
+	lotteryUkThunderball,
+	lotteryUkEuroMillions
 ]
 
 for (var i = 1; i <= 5; i++) {
