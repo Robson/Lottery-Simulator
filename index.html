@@ -8,25 +8,25 @@
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
 		  gtag('config', 'G-2E561F2422');
-		</script>	
+		</script>
 		<!--
 		************************************************
 		The script above is for google analytics.
 		You'll want to remove that if you use this page.
 		************************************************
-		-->	
+		-->
 		<title>Lottery Simulator</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="https://d3js.org/d3.v3.min.js"></script>		
-		<script src="lotteries.js"></script>		
-		<script src="simulate.js"></script>		
+		<script src="https://d3js.org/d3.v3.min.js"></script>
+		<script src="lotteries.js"></script>
+		<script src="simulate.js"></script>
 		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik&display=swap"> 		
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"> 		
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500&display=swap"> 			
-		<link rel="stylesheet" type="text/css" href="style.css"  />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik&display=swap">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500&display=swap">
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
 		<h1>Lottery Simulator</h1>
@@ -34,16 +34,16 @@
 			Simulate
 			<select id="ticketAmount" dir="rtl">
 			</select>
-			<script>			
+			<script>
 				for (var a = 0; a < 8; a++) {
 					d3
 						.select('#ticketAmount')
-						.append('option')						
+						.append('option')
 						.attr('value', Math.pow(10, a))
 						.html(Number(Math.pow(10, a)).toLocaleString());
 				}
-				d3.select('#ticketAmount').property('value', 1000);			
-			</script>			
+				d3.select('#ticketAmount').property('value', 1000);
+			</script>
 			tickets for the
 			<select id="lotteryType">
 			</select>
@@ -55,27 +55,27 @@
 						.attr('value', a)
 						.html(lotteries[a].title);
 				}
-			</script>			
+			</script>
 			at
 			<select id="simulationSpeed" dir="rtl">
 			</select>
-			<script>			
+			<script>
 				for (var a = 0; a < 7; a++) {
 					d3
 						.select('#simulationSpeed')
-						.append('option')						
+						.append('option')
 						.attr('value', Math.pow(10, a))
 						.html(Number(Math.pow(10, a)).toLocaleString());
 				}
-				d3.select('#simulationSpeed').property('value', 100);			
-			</script>			
+				d3.select('#simulationSpeed').property('value', 100);
+			</script>
 			tickets per second.
-		</p>				
+		</p>
 		<p>
-			<input id="simulate" type="button" value="Simulate!" onclick="simulate()" />
+			<input id="simulate" type="button" value="Simulate!" onclick="simulate()">
 		</p>
 		<div id="output">
-			<hr/>
+			<hr>
 			<table id="tablePurchases">
 				<tr>
 					<th>Statistic</th>
@@ -84,15 +84,15 @@
 				<tr class="first">
 					<td class="title">Simulation Progress</td>
 					<td class="value" id="statSimulationProgress">0%</td>
-				</tr>			
+				</tr>
 				<tr>
 					<td class="title">Tickets Purchased</td>
 					<td class="value" id="statTicketsPurchased">0</td>
-				</tr>		
+				</tr>
 				<tr>
 					<td class="title">Ticket Price</td>
 					<td class="value" id="statTicketPrice">£0</td>
-				</tr>		
+				</tr>
 				<tr>
 					<td class="title">Money Spent</td>
 					<td class="value" id="statMoneySpent">£0</td>
@@ -104,31 +104,31 @@
 				<tr>
 					<td class="title">Balance</td>
 					<td class="value" id="statMoneyBalance">£0</td>
-				</tr>			
+				</tr>
 			</table>
 			<div id="screenLarge">
 				<table id="tableWinsLarge">
 					<tr>
-						<th class="left">&nbsp;<br/>Combination</th>				
-						<th>Chance<br/>(x to 1)</th>
-						<th>&nbsp;<br/>Payout</th>
-						<th>Times<br/>Won</th>
-					</tr>			
+						<th class="left">&nbsp;<br>Combination</th>
+						<th>Chance<br>(x to 1)</th>
+						<th>&nbsp;<br>Payout</th>
+						<th>Times<br>Won</th>
+					</tr>
 				</table>
 			</div>
 			<div id="screenSmall">
 				<table id="tableWinsSmall">
 					<tr>
-						<th class="left">&nbsp;<br/>Combination</th>		
-						<th>&nbsp;<br/>Payout</th>
-						<th>Times<br/>Won</th>
-					</tr>				
-				</table>			
+						<th class="left">&nbsp;<br>Combination</th>
+						<th>&nbsp;<br>Payout</th>
+						<th>Times<br>Won</th>
+					</tr>
+				</table>
 				<table id="tableChanceSmall">
 					<tr>
-						<th class="left">&nbsp;<br/>Combination</th>				
-						<th>Chance<br/>(x to 1)</th>
-					</tr>				
+						<th class="left">&nbsp;<br>Combination</th>
+						<th>Chance<br>(x to 1)</th>
+					</tr>
 				</table>
 			</div>
 			<table id="tableNotes">
@@ -140,13 +140,13 @@
 				</tr>
 			</table>
 			<div>
-				<input id="copy" type="button" value="Share Result" onclick="copy()" />
+				<input id="copy" type="button" value="Share Result" onclick="copy()">
 			</div>
 			<div id="footer">
 				<p>Written by <a href="https://robson.plus">Robson</a>.</p>
 				<p id="rules"></p>
-				<p>Want to suggest an idea or improve this page? <a href="https://github.com/Robson/Lottery-Simulator">Here's the code</a>.</p>			
-			</div>			
-		</div>		
+				<p>Want to suggest an idea or improve this page? <a href="https://github.com/Robson/Lottery-Simulator">Here's the code</a>.</p>
+			</div>
+		</div>
 	</body>
 </html>
