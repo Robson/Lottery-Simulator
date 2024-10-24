@@ -81,4 +81,4 @@ This is built using:
 
 <a href="http://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Frobson.plus%2Flottery-simulator%2Fstyle.css&profile=css3svg&usermedium=all&warning=1"><img src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS" /></a>      
 
-[![X](https://www.codefactor.io/repository/github/robson/Emoji-Match/badge?style=flat-square)](https://www.codefactor.io/repository/github/robson/Lottery-Simulator)
+[![X](https://www.codefactor.io/repository/github/robson/Lottery-Simulator/badge?style=flat-square)](https://www.codefactor.io/repository/github/robson/Lottery-Simulator)
